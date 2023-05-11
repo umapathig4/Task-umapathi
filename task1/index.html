@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Picture Buying Portal</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1 class="title">Picture Buying Portal</h1>
+  <div class="pictures">
+    <div class="picture">
+      <img src="images/1.jpg">
+      <h1>₹70.00</h1>
+      <button onclick="addToCart('images/1.jpg')">Buy</button>
+    </div>
+    <div class="picture">
+      <img src="images/2.jpg">
+       <h1>₹60.00</h1>
+      <button onclick="addToCart('images/2.jpg')">Buy</button>
+    </div>
+    <div class="picture">
+      <img src="images/3.jpg">
+       <h1>₹60.00</h1>
+      <button onclick="addToCart('images/3.jpg')">Buy</button>
+    </div>
+    <div class="picture">
+      <img src="images/4.jpg">
+       <h1>₹70.00</h1>
+      <button onclick="addToCart('images/4.jpg')">Buy</button>
+    </div>
+    <div class="picture">
+      <img src="images/5.jpg">
+       <h1>₹70.00</h1>
+      <button onclick="addToCart('images/5.jpg')">Buy</button>
+    </div>
+    <div class="picture">
+      <img src="images/6.jpg">
+       <h1>₹70.00</h1>
+      <button onclick="addToCart('images/6.jpg')">Buy</button>
+    </div>
+  </div>
+  
+  <div id="cart">
+    <h2 class="title1">Shopping Cart</h2>
+    <div id="cart-items"></div>
+    <button onclick="pay()">Pay</button>
+  </div>
+
+  <script>
+    var cartItems = [];
+
+    function addToCart(picture) {
+      cartItems.push(picture);
+      var cartItemElement = document.createElement('div');
+      cartItemElement.classList.add('cart-item');
+      cartItemElement.innerHTML = '<img src="' + picture + '"><span>' + picture + '</span>';
+      document.getElementById('cart-items').appendChild(cartItemElement);
+    }
+
+    function pay() {
+      for (var i = 0; i < cartItems.length; i++) {
+        var picture = cartItems[i];
+        var pictureElement = document.querySelector('img[src="' + picture + '"]').parentNode;
+        pictureElement.parentNode.removeChild(pictureElement);
+      }
+
+      cartItems = [];
+      document.getElementById('cart-items').innerHTML = '';
+
+      alert('Payment successful!');
+    }
+  </script>
+</body>
+</html>
